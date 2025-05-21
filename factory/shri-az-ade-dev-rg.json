@@ -1,0 +1,9 @@
+{
+	"name": "shri-az-ade-dev-rg",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "08978fca-b4ff-4e58-bd35-91ef746185fe",
+		"tenantId": "b6910f29-5793-433a-ba14-17a98b93295d"
+	}
+}
