@@ -62,7 +62,7 @@
 			}
 		],
 		"parameters": {
-			"p_hydrationfile": {
+			"p2p_hydrationfile": {
 				"type": "string",
 				"defaultValue": "Hydration File.csv"
 			}
