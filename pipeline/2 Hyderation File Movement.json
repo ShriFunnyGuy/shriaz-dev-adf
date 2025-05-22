@@ -53,7 +53,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_source_hydrationfilename": {
-								"value": "@pipeline().parameters.p2p_hydrationfile",
+								"value": "@pipeline().parameters.p2p_hydrationfilename",
 								"type": "Expression"
 							}
 						}
@@ -65,7 +65,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_sink_hydrationfilename": {
-								"value": "@pipeline().parameters.p2p_hydrationfile",
+								"value": "@pipeline().parameters.p2p_hydrationfilename",
 								"type": "Expression"
 							}
 						}
