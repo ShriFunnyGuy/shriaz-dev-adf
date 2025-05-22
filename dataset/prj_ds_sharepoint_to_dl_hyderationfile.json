@@ -1,0 +1,26 @@
+{
+	"name": "prj_ds_sharepoint_to_dl_hyderationfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_shri_adf_dev_blob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@replace(substring(utcNow(),0 ,10 ),'-' ,'/')",
+					"type": "Expression"
+				},
+				"container": "hyderationfilefolder"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
