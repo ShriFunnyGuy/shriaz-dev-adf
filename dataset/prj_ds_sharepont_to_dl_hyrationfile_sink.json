@@ -16,6 +16,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().p_copy_hydrationfilename",
+					"type": "Expression"
+				},
 				"folderPath": {
 					"value": "@replace(substring(utcNow(),0,10),'-','/') ",
 					"type": "Expression"
