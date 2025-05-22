@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"p_copy_hydrationfilename": {
+			"p_sink_hydrationfilename": {
 				"type": "string",
 				"defaultValue": "Hydration File.csv"
 			}

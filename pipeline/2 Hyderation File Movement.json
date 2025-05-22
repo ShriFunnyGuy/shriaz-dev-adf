@@ -58,7 +58,7 @@
 						"referenceName": "prj_ds_sharepont_to_dl_hyrationfile_sink",
 						"type": "DatasetReference",
 						"parameters": {
-							"p_copy_hydrationfilename": {
+							"p_sink_hydrationfilename": {
 								"value": "@pipeline().parameters.p2p_hydrationfile",
 								"type": "Expression"
 							}
