@@ -62,7 +62,13 @@
 				"outputs": [
 					{
 						"referenceName": "prj_ds_sharepoint_to_dl_hyderationfile",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@pipeline().parameters.p_hydrationfile",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
