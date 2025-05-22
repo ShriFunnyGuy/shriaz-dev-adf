@@ -1,6 +1,12 @@
 {
 	"name": "1 Master Pipline",
 	"properties": {
+		"variables": {
+			"hyderationfilename": {
+				"type": "String",
+				"defaultValue": "Hyderation File.csv"
+			}
+		},
 		"folder": {
 			"name": "Shri-Adf-Dev-Project"
 		},
