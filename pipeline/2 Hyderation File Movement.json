@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Sharepoint to DL",
+				"name": "Sharepoint to DL Hyderation file movement",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
