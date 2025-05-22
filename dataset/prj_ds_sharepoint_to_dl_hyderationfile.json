@@ -5,6 +5,12 @@
 			"referenceName": "ls_shri_adf_dev_blob",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"filename": {
+				"type": "string",
+				"defaultValue": "Hydration File.csv"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
