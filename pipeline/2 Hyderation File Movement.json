@@ -49,26 +49,14 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "prj_ds_sharepoint_to_dl_hyderationfile",
-						"type": "DatasetReference",
-						"parameters": {
-							"filename": {
-								"value": "@pipeline().parameters.p_hydrationfile",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "prj_ds_sharepoint_to_dl_hydrationfile",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "prj_ds_sharepoint_to_dl_hyderationfile",
-						"type": "DatasetReference",
-						"parameters": {
-							"filename": {
-								"value": "@pipeline().parameters.p_hydrationfile",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "prj_ds_sharepont_to_dl_hyrationfile_sink",
+						"type": "DatasetReference"
 					}
 				]
 			}
