@@ -76,7 +76,7 @@
 		"parameters": {
 			"p2p_hydrationfilename": {
 				"type": "string",
-				"defaultValue": "HydrationFile.xlsx"
+				"defaultValue": "HydrationFile.csv"
 			}
 		},
 		"folder": {
