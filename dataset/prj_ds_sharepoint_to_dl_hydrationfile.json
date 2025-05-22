@@ -16,7 +16,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "HydrationFile.xlsx",
+				"fileName": {
+					"value": "@dataset().p_source_hydrationfile",
+					"type": "Expression"
+				},
 				"container": "sharepoint"
 			},
 			"columnDelimiter": ",",
