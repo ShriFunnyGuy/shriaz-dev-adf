@@ -36,6 +36,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"hyderationfilename": {
+				"type": "string",
+				"defaultValue": "Hyderation File.csv"
+			}
+		},
 		"folder": {
 			"name": "Shri-Adf-Dev-Project"
 		},
