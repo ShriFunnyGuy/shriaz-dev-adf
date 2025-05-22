@@ -2,9 +2,9 @@
 	"name": "1 Master Pipline",
 	"properties": {
 		"variables": {
-			"hyderationfilename": {
+			"p_1_p_hyderationfilename": {
 				"type": "String",
-				"defaultValue": "Hyderation File.csv"
+				"defaultValue": "HydrationFile.csv"
 			}
 		},
 		"folder": {
