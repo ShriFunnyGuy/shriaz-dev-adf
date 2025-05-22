@@ -52,7 +52,10 @@
 						"referenceName": "prj_ds_sharepoint_to_dl_hyderationfile",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "Hydration File.csv"
+							"filename": {
+								"value": "@pipeline().parameters.p_hydrationfile",
+								"type": "Expression"
+							}
 						}
 					}
 				],
