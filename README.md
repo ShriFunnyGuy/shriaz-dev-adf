@@ -55,6 +55,11 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
   - Inside the loop, use a Copy Data activity to extract data from each source table and save it as a .csv file.
  
   - Files should be stored in the Bronze Layer folder using the following structure:YYYY/MM/DD/schemaname_tablename.csv
+  - ![image](https://github.com/user-attachments/assets/b8faed1f-eb06-4168-a51a-37a9212408c9)
+
+  - ![image](https://github.com/user-attachments/assets/4e5934bb-6593-4b90-b5ee-bb7d55fec2d5)
+
+ 
 
 **4. Incriment Load Process**
 
