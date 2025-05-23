@@ -28,7 +28,7 @@
 				}
 			},
 			{
-				"name": "Filter a records for full load",
+				"name": "Filter Full load tables",
 				"type": "Filter",
 				"dependsOn": [
 					{
@@ -49,6 +49,12 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"folder": {
