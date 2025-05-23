@@ -51,7 +51,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "For each for each table",
 				"type": "ForEach",
 				"dependsOn": [
 					{
