@@ -1,0 +1,20 @@
+{
+	"name": "prj_ds_onprems_sqlserver",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DiMiLaptopOnPremiesesSQL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"lp_schema": {
+				"type": "string"
+			},
+			"lp_tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
