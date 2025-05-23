@@ -65,7 +65,7 @@
 				"typeProperties": {
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "Copy data from source to destination",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -122,7 +122,13 @@
 							"outputs": [
 								{
 									"referenceName": "prj_ds_bronzelayer",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"lp_destinationfilename": {
+											"value": "@concat(item().sourceSchema,'_',item().sourceTableName,'.csv')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
