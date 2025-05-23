@@ -17,16 +17,16 @@
  
 | S.No | Source Schema      | Source Table Name | Load Type | Status |
 |------|--------------------|-------------------|-----------|--------|
-| 1    | HydrationFile.csv  | Customers         | full      | 1      |
-| 2    | HydrationFile.csv  | Inventory         | full      | 1      |
-| 3    | HydrationFile.csv  | Orderitems        | full      | 1      |
-| 4    | HydrationFile.csv  | Orders            | inc       | 1      |
-| 5    | HydrationFile.csv  | Payments          | inc       | 1      |
-| 6    | HydrationFile.csv  | Products          | full      | 1      |
-| 7    | HydrationFile.csv  | Promotions        | inc       | 1      |
-| 8    | HydrationFile.csv  | Returns           | inc       | 1      |
-| 9    | HydrationFile.csv  | Reviews           | inc       | 1      |
-| 10   | HydrationFile.csv  | ShippingDetails   | inc       | 1      |
+| 1    | ADF                | Customers         | full      | 1      |
+| 2    | ADF                | Inventory         | full      | 1      |
+| 3    | ADF                | Orderitems        | full      | 1      |
+| 4    | ADF                | Orders            | inc       | 1      |
+| 5    | ADF                | Payments          | inc       | 1      |
+| 6    | ADF                | Products          | full      | 1      |
+| 7    | ADF                | Promotions        | inc       | 1      |
+| 8    | ADF                | Returns           | inc       | 1      |
+| 9    | ADF                | Reviews           | inc       | 1      |
+| 10   | ADF                | ShippingDetails   | inc       | 1      |
 
 - Create a folder named SharePoint on Azure Blob Storage (Note: The Hydration file will be stored on Azure Blob Storage instead of SharePoint).
 
@@ -47,10 +47,14 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
 
 **3. Full Load Process**
 
-- Develop an ADF pipeline for a Full Load from the following folder structure:
-data/YYYY/MM/DD/HydrationFile.csv
-
-  - The pipeline should read the Hydration CSV file and load the data into the target Azure SQL table where LoadType = 'full'.
+- Develop an ADF pipeline to perform a full load from the on-premises SQL tables to the bronze layer in Azure Blob Storage, storing the data as a file named in the format: schemaname_tablename.csv (e.g., .csv or .parquet).
+  - The pipeline should read table names from the Azure SQL table named "tablelist" and filter records where LoadType = 'full'.
+    
+  - Use a ForEach activity to iterate over each table entry.
+ 
+  - Inside the loop, use a Copy Data activity to extract data from each source table and save it as a .csv file.
+ 
+  - Files should be stored in the Bronze Layer folder using the following structure:YYYY/MM/DD/schemaname_tablename.csv
 
 **4. Incriment Load Process**
 
