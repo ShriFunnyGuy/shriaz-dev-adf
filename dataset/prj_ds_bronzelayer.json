@@ -1,0 +1,35 @@
+{
+	"name": "prj_ds_bronzelayer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_shri_adf_dev_blob",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"lp_destinationfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(dataset().lp_destinationfilename,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@replace(substring(utcNow(),0 ,10 ),'-' ,'/')",
+					"type": "Expression"
+				},
+				"container": "bronzelayer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
