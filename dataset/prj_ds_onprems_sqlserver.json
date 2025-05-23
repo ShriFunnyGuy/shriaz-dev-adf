@@ -15,6 +15,16 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().lp_schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().lp_tablename",
+				"type": "Expression"
+			}
+		}
 	}
 }
