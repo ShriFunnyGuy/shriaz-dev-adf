@@ -1,0 +1,59 @@
+{
+	"name": "3 Full load",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fetch Table list",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "prj_ds_fetch_tablelist",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Filter a records for full load",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Fetch Table list",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Table list').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(toLower(item().LoadType),toLower('full'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Shri-Adf-Dev-Project"
+		},
+		"annotations": []
+	}
+}
