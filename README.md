@@ -35,7 +35,7 @@
 - Create a folder structure named **HydrationFileFolder** on Azure Blob Storage to store daily files.
 Format: YYYY/MM/DD (e.g., 2025/05/23)
 
-**2.2 Azure Data Factory (ADF) Pipelines**
+**3 Move Hydration file and Load data into Table**
 - Develop an ADF pipeline to move the Hydration file from the SharePoint folder (on Azure Blob Storage) to the **DataLake** [HydrationFileFolder (also on Azure Blob Storage)].
 
 - Develop an ADF pipeline to read the Hydration file (CSV format) and load the data into an Azure SQL Database table.
@@ -45,7 +45,7 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
 
 
 
-**3. Full Load Process**
+**4. Full Load Process**
 
 - Develop an ADF pipeline to perform a full load from the on-premises SQL tables to the bronze layer in Azure Blob Storage, storing the data as a file named in the format: schemaname_tablename.csv (e.g., .csv or .parquet).
   - The pipeline should read table names from the Azure SQL table named "tablelist" and filter records where LoadType = 'full'.
@@ -59,15 +59,19 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
 
   - ![image](https://github.com/user-attachments/assets/4e5934bb-6593-4b90-b5ee-bb7d55fec2d5)
 
- 
-
-**4. Incriment Load Process**
+**5. Integration**
+ - Create a master pipeline that orchestrates the following processes:
+    - Move the Hydration file from the SharePoint folder (Azure Blob Storage) to the Data Lake. **(Refer above Point 3.)**
+    - Load data from the Hydration file into the Azure SQL table. **(Refer above Point 3.)**
+    - Execute the Full Load process from the on-premises SQL source to the Bronze Layer in Azure Blob Storag **(Refer above Point 4.)**
+      
+**6. Incriment Load Process**
 
 - Develop an ADF pipeline for a Incriment Load from the following folder structure:
 data/YYYY/MM/DD/HydrationFile.csv
 
   - The pipeline should read the Hydration CSV file and load the data into the target Azure SQL table where LoadType = 'inc'
     
-**5. Perform cleaning**
+**7. Perform cleaning**
     
 - Perform cleaning for each table then transform the data then load into **DeltaLake** (merge - DWH -SCD)
