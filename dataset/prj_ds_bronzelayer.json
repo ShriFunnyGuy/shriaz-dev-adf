@@ -15,6 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().lp_destinationfilename",
+					"type": "Expression"
+				},
 				"folderPath": {
 					"value": "@replace(substring(utcNow(),0 ,10 ),'-' ,'/')",
 					"type": "Expression"
