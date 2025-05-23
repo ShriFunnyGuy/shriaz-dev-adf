@@ -64,6 +64,8 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
     - Move the Hydration file from the SharePoint folder (Azure Blob Storage) to the Data Lake. **(Refer above Point 3.)**
     - Load data from the Hydration file into the Azure SQL table. **(Refer above Point 3.)**
     - Execute the Full Load process from the on-premises SQL source to the Bronze Layer in Azure Blob Storag **(Refer above Point 4.)**
+      ![image](https://github.com/user-attachments/assets/e85cbbe9-35f8-4f8f-869b-c49cca7b33ad)
+
       
 **6. Incriment Load Process**
 
