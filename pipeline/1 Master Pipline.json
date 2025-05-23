@@ -1,6 +1,53 @@
 {
 	"name": "1 Master Pipline",
 	"properties": {
+		"activities": [
+			{
+				"name": "Hydration file movement",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "2 Hyderation File Movement",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"p2p_hydrationfilename": {
+							"value": "@variables('p_1_p_hyderationfilename')",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Calling Full Load",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Hydration file movement",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3 Full load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
 		"variables": {
 			"p_1_p_hyderationfilename": {
 				"type": "String",
