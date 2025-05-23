@@ -63,6 +63,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Table list').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data from source to destination",
