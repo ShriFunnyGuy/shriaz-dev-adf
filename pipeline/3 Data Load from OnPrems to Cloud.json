@@ -86,6 +86,8 @@
 			{
 				"name": "Incremental Load Pipeline Call",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter Incremental load tables",
