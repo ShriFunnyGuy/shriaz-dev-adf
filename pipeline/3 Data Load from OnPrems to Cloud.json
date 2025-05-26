@@ -105,7 +105,13 @@
 						"referenceName": "4 Full Load",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"p_fullloadTables": {
+							"value": "@activity('Filter Incremental load tables').output.value",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
@@ -126,7 +132,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@equals(toLower(item()),toLower('inc'))",
+						"value": "@equals(toLower(item().LoadType),toLower('inc'))",
 						"type": "Expression"
 					}
 				}
