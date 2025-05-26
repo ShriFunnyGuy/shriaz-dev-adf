@@ -33,7 +33,7 @@
 		],
 		"typeProperties": {
 			"schema": "ADF",
-			"table": "TableList"
+			"table": "WatermarkTable"
 		}
 	}
 }
