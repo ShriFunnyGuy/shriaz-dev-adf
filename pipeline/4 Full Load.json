@@ -3,68 +3,13 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Fetch Table list",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "prj_ds_fetch_tablelist",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
-			},
-			{
-				"name": "Filter Full load tables",
-				"type": "Filter",
-				"dependsOn": [
-					{
-						"activity": "Fetch Table list",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Fetch Table list').output.value",
-						"type": "Expression"
-					},
-					"condition": {
-						"value": "@equals(toLower(item().LoadType),toLower('full'))",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "For each for each table",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Filter Full load tables",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Filter Full load tables').output.value",
+						"value": "@pipeline().parameters.p_fullloadTables",
 						"type": "Expression"
 					},
 					"activities": [
