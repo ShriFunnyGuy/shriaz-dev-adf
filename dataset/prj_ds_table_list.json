@@ -32,8 +32,8 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "tablelist"
+			"schema": "ADF",
+			"table": "TableList"
 		}
 	}
 }
