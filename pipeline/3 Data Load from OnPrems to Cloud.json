@@ -73,7 +73,7 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"p_fullloadTables": {
-							"value": "@activity('Fetch Table list').output.value",
+							"value": "@activity('Filter Full load tables').output.value",
 							"type": "Expression"
 						}
 					}
