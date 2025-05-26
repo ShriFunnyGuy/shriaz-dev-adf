@@ -1,5 +1,5 @@
 {
-	"name": "41 Full Load",
+	"name": "4 Full Load",
 	"properties": {
 		"activities": [
 			{
@@ -140,6 +140,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"p_fullloadTables": {
+				"type": "array"
+			}
+		},
 		"folder": {
 			"name": "Shri-Adf-Dev-Project"
 		},

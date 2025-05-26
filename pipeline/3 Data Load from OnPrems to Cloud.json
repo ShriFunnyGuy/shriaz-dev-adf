@@ -1,5 +1,5 @@
 {
-	"name": "4 Full load",
+	"name": "3 Data Load from OnPrems to Cloud",
 	"properties": {
 		"activities": [
 			{
@@ -66,15 +66,20 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitOnCompletion": true
+					"pipeline": {
+						"referenceName": "4 Full Load",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"p_fullloadTables": {
+							"value": "@activity('Fetch Table list').output.value",
+							"type": "Expression"
+						}
+					}
 				}
 			}
 		],
-		"parameters": {
-			"p_fullloadTables": {
-				"type": "array"
-			}
-		},
 		"folder": {
 			"name": "Shri-Adf-Dev-Project"
 		},
