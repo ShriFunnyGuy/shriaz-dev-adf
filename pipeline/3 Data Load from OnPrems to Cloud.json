@@ -101,6 +101,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "4 Full Load",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
