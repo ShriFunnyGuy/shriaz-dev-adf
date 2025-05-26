@@ -77,10 +77,15 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
 
   - Run a full data load first, then initialize the WatermarkTable with the current data timestamps before starting incremental loads.
 
-    - insert into watermarktable values(1,'Orders',dateadd(day,-60,getdate()))
-    - insert into watermarktable values(2,'OrderItems',dateadd(day,-60,getdate()))
-    - insert into watermarktable values(3,'Inventory',dateadd(day,-60,getdate()))
-    - insert into watermarktable values(4,'Payments',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(2,'Inventory',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(3,'Orders',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(4,'OrderItems',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(5,'Payments',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(6,'Products',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(7,'Promotions',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(8,'Returns',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(9,'Reviews',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(10,'ShippingDetails',dateadd(day,-60,getdate()))
 
 - Develop an ADF pipeline for a Incriment Load from the following folder structure:
 data/YYYY/MM/DD/HydrationFile.csv
