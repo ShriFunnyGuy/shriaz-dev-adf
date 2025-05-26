@@ -1,0 +1,39 @@
+{
+	"name": "prj_ds_watermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "prj_azure_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "sno",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "sourceSchema",
+				"type": "varchar"
+			},
+			{
+				"name": "sourceTableName",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadType",
+				"type": "varchar"
+			},
+			{
+				"name": "Status",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "ADF",
+			"table": "WatermarkTable"
+		}
+	}
+}
