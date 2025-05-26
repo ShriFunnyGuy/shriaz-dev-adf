@@ -30,6 +30,8 @@
 			{
 				"name": "Filter Full load tables",
 				"type": "Filter",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Fetch Table list",
@@ -53,6 +55,8 @@
 			{
 				"name": "Full Load Pipeline Call",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter Full load tables",
@@ -76,6 +80,48 @@
 							"value": "@activity('Filter Full load tables').output.value",
 							"type": "Expression"
 						}
+					}
+				}
+			},
+			{
+				"name": "Incremental Load Pipeline Call",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Filter Incremental load tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Filter Incremental load tables",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Fetch Table list",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Table list').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(toLower(item().LoadType),toLower('inc'))",
+						"type": "Expression"
 					}
 				}
 			}
