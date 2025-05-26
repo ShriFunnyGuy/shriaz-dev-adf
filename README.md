@@ -85,7 +85,8 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
     - insert into ADF.WatermarkTable values(7,'Promotions',dateadd(day,-60,getdate()))
     - insert into ADF.WatermarkTable values(8,'Returns',dateadd(day,-60,getdate()))
     - insert into ADF.WatermarkTable values(9,'Reviews',dateadd(day,-60,getdate()))
-    - insert into ADF.WatermarkTable values(10,'ShippingDetails',dateadd(day,-60,getdate()))
+    - insert into ADF.WatermarkTable values(10,'ShippingDetails',dateadd(day,-60,getdate()))      
+    - [**Note:**I am inserting a backdated value into the WatermarkDateTime column to retrieve historical (backdated) data.]
 
 - Develop an ADF pipeline for a Incriment Load from the following folder structure:
 data/YYYY/MM/DD/HydrationFile.csv
