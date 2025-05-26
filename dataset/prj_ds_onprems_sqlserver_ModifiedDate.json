@@ -1,0 +1,12 @@
+{
+	"name": "prj_ds_onprems_sqlserver_ModifiedDate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DiMiLaptopOnPremiesesSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}

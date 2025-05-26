@@ -1,0 +1,198 @@
+{
+	"name": "5 Incremental Load",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.p_IncrementalTableList",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Fetch WatermarkDateTime by TableName",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@concat('SELECT WatermarkDateTime FROM ADF.WatermarkTable WHERE TableName=''',item().sourceTableName,'''')",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "prj_ds_watermark",
+									"type": "DatasetReference"
+								}
+							}
+						},
+						{
+							"name": "Fetch Max ModifiedDate from source table",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@concat('SELECT MAX(ModifiedDate) AS MaxModifiedDate FROM ',item().sourceSchema,'.',item().sourceTableName)",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "prj_ds_onprems_sqlserver_ModifiedDate",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": true
+							}
+						},
+						{
+							"name": "Fetch Incremental Records from OnPrems",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Fetch WatermarkDateTime by TableName",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "Fetch Max ModifiedDate from source table",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@concat('SELECT * FROM ',item().sourceSchema,'.',item().sourceTableName,' WHERE ModifiedDate Between ',activity('Fetch WatermarkDateTime by TableName').output.value[0].watermarkDateTime,''' AND ''',activity('Fetch Max ModifiedDate from source table').output.value[0].MaxModifiedDate,'''')",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "prj_ds_onprems_sqlserver_for_incriment",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "prj_ds_bronzelayer",
+									"type": "DatasetReference",
+									"parameters": {
+										"lp_destinationfilename": {
+											"value": "@concat(item().sourceSchema,'_',item().sourceTableName,'.csv')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Update Watermark date for Table",
+							"type": "Script",
+							"dependsOn": [
+								{
+									"activity": "Fetch Incremental Records from OnPrems",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"linkedServiceName": {
+								"referenceName": "prj_azure_sqldb",
+								"type": "LinkedServiceReference"
+							},
+							"typeProperties": {
+								"scripts": [
+									{
+										"type": "Query",
+										"text": {
+											"value": "@concat('Update ADF.WatermarkTable',' SET WatermarkDateTime=''',activity('Fetch Max ModifiedDate from source table').output.value[0].MaxModifiedDate,'''',' WHERE TableName=''',item().TableName,'''')",
+											"type": "Expression"
+										}
+									}
+								],
+								"scriptBlockExecutionTimeout": "02:00:00"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"p_IncrementalTableList": {
+				"type": "array"
+			}
+		},
+		"folder": {
+			"name": "Shri-Adf-Dev-Project"
+		},
+		"annotations": []
+	}
+}
