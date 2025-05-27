@@ -64,7 +64,9 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
     - Move the Hydration file from the SharePoint folder (Azure Blob Storage) to the Data Lake. **(Refer above Point 3.)**
     - Load data from the Hydration file into the Azure SQL table. **(Refer above Point 3.)**
     - Execute the Full Load process from the on-premises SQL source to the Bronze Layer in Azure Blob Storag **(Refer above Point 4.)**
-      ![image](https://github.com/user-attachments/assets/e85cbbe9-35f8-4f8f-869b-c49cca7b33ad)
+    - ![image](https://github.com/user-attachments/assets/636b52df-9bce-4a72-8d51-e13e433031e3)
+    - ![image](https://github.com/user-attachments/assets/6a9fc097-0a1a-446f-8ba0-56cf15a85ee1)
+    - ![image](https://github.com/user-attachments/assets/1c1458b5-8b22-4d13-bccc-1d763601ec84)
 
       
 **6. Incriment Load Process**
@@ -88,10 +90,19 @@ Format: YYYY/MM/DD (e.g., 2025/05/23)
     - insert into ADF.WatermarkTable values(10,'ShippingDetails',dateadd(day,-60,getdate()))      
     - [**Note:**I am inserting a backdated value into the WatermarkDateTime column to retrieve historical (backdated) data.]
 
+
+
+
 - Develop an ADF pipeline for a Incriment Load from the following folder structure:
 data/YYYY/MM/DD/HydrationFile.csv
 
   - The pipeline should read the Hydration CSV file and load the data into the target Azure SQL table where LoadType = 'inc'
+ 
+  - ![image](https://github.com/user-attachments/assets/1c0376c3-40af-469b-9211-3e21ac316fff)
+  - ![image](https://github.com/user-attachments/assets/3aeb68b3-c87b-41ec-82bb-afb51596fe05)
+  - ![image](https://github.com/user-attachments/assets/0856809e-fdfc-4873-8814-09a8fa3d1e14)
+
+
     
 **7. Perform cleaning**
     
