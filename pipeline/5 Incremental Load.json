@@ -148,8 +148,6 @@
 						{
 							"name": "Update Watermark date for Table",
 							"type": "Script",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Fetch Incremental Records from OnPrems",
@@ -175,7 +173,7 @@
 									{
 										"type": "Query",
 										"text": {
-											"value": "@concat('Update ADF.WatermarkTable',' SET WatermarkDateTime=''',activity('Fetch Max ModifiedDate from source table').output.value[0].MaxModifiedDate,'''',' WHERE TableName=''',item().TableName,'''')",
+											"value": "@concat('Update ADF.WatermarkTable',' SET WatermarkDateTime=''',activity('Fetch Max ModifiedDate from source table').output.firstRow.MaxModifiedDate,'''',' WHERE TableName=''',item().TableName,'''')",
 											"type": "Expression"
 										}
 									}
