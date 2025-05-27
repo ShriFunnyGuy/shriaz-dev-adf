@@ -73,8 +73,6 @@
 						{
 							"name": "Fetch Incremental Records from OnPrems",
 							"type": "Copy",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [
 								{
 									"activity": "Fetch WatermarkDateTime by TableName",
