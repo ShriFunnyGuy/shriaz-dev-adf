@@ -86,8 +86,6 @@
 			{
 				"name": "Incremental Load Pipeline Call",
 				"type": "ExecutePipeline",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter Incremental load tables",
@@ -102,12 +100,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "4 Full Load",
+						"referenceName": "5 Incremental Load",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"p_fullloadTables": {
+						"p_IncrementalTableList": {
 							"value": "@activity('Filter Incremental load tables').output.value",
 							"type": "Expression"
 						}
