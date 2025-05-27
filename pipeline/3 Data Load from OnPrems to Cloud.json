@@ -103,7 +103,13 @@
 						"referenceName": "5 Incremental Load",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"p_IncrementalTableList": {
+							"value": "@activity('Filter Incremental load tables').output.value",
+							"type": "Expression"
+						}
+					}
 				}
 			},
 			{
