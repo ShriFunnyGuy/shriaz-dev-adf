@@ -82,6 +82,8 @@
 			{
 				"name": "Incremental Load Pipeline Call",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter Incremental load tables",
@@ -111,6 +113,8 @@
 			{
 				"name": "Filter Incremental load tables",
 				"type": "Filter",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Fetch Table list",
