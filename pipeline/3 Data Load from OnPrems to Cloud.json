@@ -100,12 +100,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "5 Incremental Load",
+						"referenceName": "4 Full Load",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"p_IncrementalTableList": {
+						"p_fullloadTables": {
 							"value": "@activity('Filter Incremental load tables').output.value",
 							"type": "Expression"
 						}
