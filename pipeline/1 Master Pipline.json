@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "4 Full Load",
+						"referenceName": "3 Data Load from OnPrems to Cloud",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
