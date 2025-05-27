@@ -99,7 +99,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat('SELECT * FROM ',item().sourceSchema,'.',item().sourceTableName,' WHERE ModifiedDate Between ',activity('Fetch WatermarkDateTime by TableName').output.firstRow.watermarkDateTime,''' AND ''',activity('Fetch Max ModifiedDate from source table').output.firstRow.MaxModifiedDate,'''')",
+										"value": "@concat('SELECT * FROM ',item().sourceSchema,'.',item().sourceTableName,' WHERE ModifiedDate Between ''',activity('Fetch WatermarkDateTime by TableName').output.firstRow.watermarkDateTime,''' AND ''',activity('Fetch Max ModifiedDate from source table').output.firstRow.MaxModifiedDate,'''')",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
