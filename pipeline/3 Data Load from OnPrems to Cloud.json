@@ -34,7 +34,7 @@
 					{
 						"activity": "Fetch Table list",
 						"dependencyConditions": [
-							"Skipped"
+							"Succeeded"
 						]
 					}
 				],
