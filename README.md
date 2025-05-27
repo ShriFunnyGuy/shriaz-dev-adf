@@ -101,6 +101,12 @@ data/YYYY/MM/DD/HydrationFile.csv
   - ![image](https://github.com/user-attachments/assets/1c0376c3-40af-469b-9211-3e21ac316fff)
   - ![image](https://github.com/user-attachments/assets/3aeb68b3-c87b-41ec-82bb-afb51596fe05)
   - ![image](https://github.com/user-attachments/assets/0856809e-fdfc-4873-8814-09a8fa3d1e14)
+  - Testing Incremental load 1
+    - Run **Incremental load 1** section sql scrips  from **sql script.txt**
+    - Ouput files before execute **3 Data Load from OnPrems to Cloud** pipeline
+    - ![image](https://github.com/user-attachments/assets/f6818baf-28c7-47b9-9395-3e74baecc1c6)
+    - Run **3 Data Load from OnPrems to Cloud** pipeline
+    - Verify the output files in the Bronze layer.
 
 
     
