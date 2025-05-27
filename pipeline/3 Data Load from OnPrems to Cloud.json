@@ -30,8 +30,6 @@
 			{
 				"name": "Filter Full load tables",
 				"type": "Filter",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Fetch Table list",
@@ -55,8 +53,6 @@
 			{
 				"name": "Full Load Pipeline Call",
 				"type": "ExecutePipeline",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter Full load tables",
